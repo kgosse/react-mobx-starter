@@ -1,0 +1,97 @@
+// default colors
+$hopbush:                           #c69;
+$bouquet:                           #b37399;
+$venus:                             #998099;
+$patina:                            #699;
+$nebula:                            #d2e1dd;
+$white:                             #fff;
+$dawn-pink:                         #f2ece4;
+$wafer:                             #e1d7d2;
+$iron:                              #dadbdf;
+$gray:                              #eeeeee;
+$regent-grey:                       #808c99;
+$pale-sky:                          #6b717f;
+$midnight-blue:                     #036;
+$black:                             #000;
+$facebook-color:                    #3b5998;
+
+// =============
+
+// Header and NavBar
+$header-color:                      #31c6eb;
+$project-tab-color:                 #ef3471;
+$project-tab-hover-color:           #e12a66;
+$creation-tab-color:                #5cb85c;
+$creation-tab-hover-color:          #47af47;
+$unselected-tab-color:              #f8f8f8;
+
+// Button
+$btn-default-color:                 $white;
+$btn-primary-color:                 #0a5872;
+$btn-primary-hover-color:           #08495f;
+$btn-success-color:                 $creation-tab-color;
+$btn-success-hover-color:           $creation-tab-hover-color;
+$btn-cancel-color:                  #dad7d7;
+$btn-red-color:                     $project-tab-color;
+$btn-success-color:                 #5cb85c;
+
+// Notification box
+$notification-box-bg-color:         $white;
+$notification-box-border-color:     $btn-primary-color;
+
+// Text
+$text-primary-color:                $btn-primary-color;
+$text-info-color:                   #62787f;
+
+// Common
+$background-color:                  $white;
+$uploaded-img-fg-color:             rgba($header-color, .5);  // uploaded images foreground color
+$modal-overlay-color:               rgba($black, .4);
+
+// Controls
+$input-label-color:                 #5d757b;
+$input-error-color:                 #ef3471;
+$input-border-color:                #ced4d5;
+$checkbox-label-color:              #0a5872;
+$checkbox-border-color:             #0a5872;
+$checkbox-background-color:         $white;
+$radio-background-color:            $white;
+$radio-label-color:                 #819ca3;
+$radio-border-color:                #b9bebf;
+
+// Forms
+$form-background-color:             $white;
+$form-icon-color:                   $white;
+$form-header-title-color:           $white;
+$form-header-background-color:      #0a5872;
+$form-icon-wrapper-color:           #063443;
+$form-link-color:                   #b9b8b8;
+$form-link-success-color:           #5cb85c;
+$form-warning-color:                #ef3471;
+$form-sub-text-color:               #819ca3;
+
+// Collections
+$new-card-background-color:         #f4f8f9;
+$new-card-border-color:             #bac9ce;
+$collection-title-color:            #adbcc1;
+
+// Custom select
+$select-border:                 #cccccc;
+$select-border-dropdown:        #e7f0f9;
+$select-background:             #ecf7f9;
+$select-button-background:      #a2b6bf;
+$select-active-color:           #0a5872;
+$select-active-arrow-color:     #458e9e;
+
+// Tooltips
+$tooltip-title-background-color:    rgba(0, 0, 0, 0.8);
+$tooltip-default-background-color:  #f9fbfd;
+$tooltip-default-border-color:      #dbe5e7;
+$tooltip-default-shadow-color:      rgba(0, 0, 0, 0.1);
+$tooltip-default-text-color:        #6b848a;
+$tooltip-default-arrow-color:       rgba(219, 229, 231, 1);
+
+// Album title popup
+$input-popup-icon-color:        #6c8182;
+$input-popup-background-color:  #e5edef;
+$input-popup-border-color:      #d0d6d4;

@@ -1,0 +1,64 @@
+@viewport {
+    width: device-width;
+}
+
+html {
+    box-sizing: border-box;
+    height: 100%;
+
+    background-color: $background-color;
+}
+
+* {
+    &:before,
+    &:after {
+        box-sizing: inherit;
+    }
+}
+
+body {
+    font: 400 14px/14px Montserrat, sans-serif;
+
+    overflow-x: hidden;
+
+    min-height: 100%;
+
+    color: $text-primary-color;
+
+    -ms-font-feature-settings: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+a {
+    transition: color 0.2s;
+    text-decoration: none;
+
+    color: $text-primary-color;
+    background: transparent;
+}
+
+img {
+    height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-family-display;
+    font-weight: normal;
+}
+
+input {
+    outline: none !important;
+
+    &:disabled {
+        cursor: default;
+
+        background-color: inherit;
+    }
+}

@@ -1,0 +1,442 @@
+// Mixins
+
+// Reset List
+//
+// Resets default list styling.
+//
+// @usage - `@include reset-list`
+//
+// Styleguide 10.1
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+}
+
+// Hovers
+//
+// Create pseduo-classes for `:hover`, `:active`, and `:focus`.
+//
+// @usage - `@include hover`
+//
+// Styleguide 10.3
+
+@mixin hover {
+    &:hover,
+    &:active,
+    &:focus {
+        @content;
+    }
+}
+
+// Feature Detection
+//
+// $feature - Feature-specific class, i.e. `cssgradients`.
+// @usage - `@include supported($feature)`
+// @usage - `@include not-supported($feature)`
+
+@mixin supported($feature) {
+    .#{$feature} & {
+        @content;
+    }
+}
+
+@mixin not-supported($feature) {
+    .no-js &,
+    .no-#{$feature} & {
+        @content;
+    }
+}
+
+// Media Queries
+//
+// Allows you to use inline media queries. Includes options for `$fix-mqs`.
+//
+// $breakpoint - Desired breakpoint. Can be variable or unit.
+// $query - Defaults to `min-width`.
+// $type - Defaults to `screen`.
+
+@mixin mq($breakpoint, $query: 'min-width', $type: 'screen') {
+    @if $fix-mqs {
+        @if $fix-mqs >= $breakpoint {
+            @content;
+        }
+    } @else {
+        @media #{$type} and (#{$query}: #{$breakpoint}) {
+            @content;
+        }
+    }
+}
+
+// Clearfix
+//
+// Nicolas Gallagher's micro clearfix hack
+//
+// @source - http://nicolasgallagher.com/micro-clearfix-hack/
+
+@mixin clearfix {
+    *zoom: 1;
+
+    &:before,
+    &:after {
+        content: '';
+
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+// Hide Text
+//
+// @usage - `@include hide-text`
+
+@mixin hide-text {
+    overflow: hidden;
+
+    white-space: nowrap;
+    text-indent: 101%;
+}
+
+// Hidden
+//
+// Hide from both screenreaders and browsers
+//
+// @usage - `@include hidden`
+
+@mixin hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+// Visually Hidden
+//
+// Hide only visually, but have it available for screenreaders
+//
+// @usage - `@include visuallyhidden`
+
+@mixin visuallyhidden {
+    position: absolute;
+
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+
+    border: 0;
+
+    // Extends the .visuallyhidden class to allow the element to be focusable
+    // when navigated to via the keyboard: h5bp.com/p
+
+    &.focusable {
+        &:active,
+        &:focus {
+            position: static;
+
+            overflow: visible;
+            clip: auto;
+
+            width: auto;
+            height: auto;
+            margin: 0;
+        }
+    }
+}
+
+// Invisible
+//
+// Hide visually and from screenreaders, but maintain layout
+//
+// @usage - `@include invisible`
+
+@mixin invisible {
+    visibility: hidden;
+}
+
+// Transform mixin
+@mixin transform($value...) {
+    -webkit-transform: $value;
+    -moz-transform: $value;
+    -o-transform: $value;
+    transform: $value;
+}
+
+// Transition mixin
+@mixin transition($value...) {
+    -webkit-transition: $value;
+    -moz-transition: $value;
+    transition: $value;
+}
+
+// Transition-delay mixin
+@mixin transition-delay($value) {
+    -webkit-transition-delay: $value;
+    -moz-transition-delay: $value;
+    -o-transition-delay: $value;
+    transition-delay: $value;
+}
+
+// backface-visibility mixin
+@mixin backface-visibility($value...) {
+    -webkit-backface-visibility: $value;
+    -moz-backface-visibility: $value;
+    backface-visibility: $value;
+}
+
+// border-radius mixin
+@mixin border-radius ($value...) {
+    -webkit-border-radius: $value;
+    -moz-border-radius: $value;
+    border-radius: $value;
+}
+
+// User select mixin
+@mixin user-select($value) {
+    -webkit-user-select: $value;
+    -moz-user-select: $value;
+    user-select: $value;
+    -khtml-user-select: $value;
+    -o-user-select: $value;
+}
+
+// Calc mixin
+@mixin calc($property, $expression) {
+    #{$property}: -moz-calc(#{$expression});
+    #{$property}: -webkit-calc(#{$expression});
+    #{$property}: calc(#{$expression});
+}
+
+// Keyframes mixin
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+// Animation mixin
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+// Modal Animations ===================
+
+@mixin fadeInAndScale {
+    &.fadeInAndScale {
+        .content {
+            @include transform(scale(0.7));
+            @include transition(all 0.3s);
+
+            opacity: 0;
+
+        }
+
+        &.show {
+            .content {
+                @include transform(scale(1));
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@mixin slideFromTheRight {
+    &.slideFromTheRight {
+        .content {
+            @include transform(translateX(20%));
+            @include transition(all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9));
+
+            opacity: 0;
+
+        }
+
+        &.show {
+            .content {
+                @include transform(translateX(0));
+
+                opacity: 1;
+            }
+        }
+
+    }
+}
+
+@mixin slideFromTheBottom {
+    &.slideFromTheBottom {
+        .content {
+            @include transform(translateX(20%));
+            @include transition(all 0.3s);
+
+            opacity: 0;
+        }
+
+        &.show {
+            .content {
+                @include transform(translateY(0));
+
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@mixin newspaper {
+    &.newspaper {
+        .content {
+            @include transform(scale(0) rotate(720deg));
+            @include transition(all 0.5s);
+
+            opacity: 0;
+        }
+
+        &.show {
+            .content {
+                @include transform(scale(1) rotate(0deg));
+
+                opacity: 1;
+            }
+
+            ~ .overlay {
+                @include transition(all 0.5s);
+
+            }
+
+        }
+    }
+}
+
+@mixin superScaled {
+    &.superScaled {
+        .content {
+            @include transform(scale(2));
+            @include transition(all 0.3s);
+
+            opacity: 0;
+        }
+
+        &.show {
+            .content {
+                @include transform(scale(1));
+
+                opacity: 1;
+            }
+        }
+    }
+}
+
+
+// Box-shadow mixin
+@mixin box-shadow($top, $left, $blur, $size, $color, $inset: false) {
+    @if $inset {
+        -webkit-box-shadow: inset $top $left $blur $size $color;
+        -moz-box-shadow: inset $top $left $blur $size $color;
+        box-shadow: inset $top $left $blur $size $color;
+    } @else {
+        -webkit-box-shadow: $top $left $blur $size $color;
+        -moz-box-shadow: $top $left $blur $size $color;
+        box-shadow: $top $left $blur $size $color;
+    }
+}
+
+// Transition mixin for vendor prefixes
+// http://log.vieron.net/articles/sass-mixins-for-vendor-prefixed-transitions-including-properties/
+@mixin transition($values...) {
+    $transitions: ();
+    @each $declaration in $values {
+        $prop: nth($declaration, 1);
+        $prop-opts: ();
+        $length: length($declaration);
+        @for $i from 2 through $length {
+            $prop-opts: append($prop-opts, nth($declaration, $i));
+        }
+        $trans: ($prop, $prop-opts);
+        $transitions: append($transitions, $trans, comma);
+    }
+
+    -webkit-transition: trans-prefix($transitions, webkit);
+    -moz-transition: trans-prefix($transitions, moz);
+    -o-transition: trans-prefix($transitions, o);
+    transition: $values;
+}
+
+// Input placeholder mixin
+@mixin placeholder {
+    &::-webkit-input-placeholder {@content}
+    &:-moz-placeholder           {@content}
+    &::-moz-placeholder          {@content}
+    &:-ms-input-placeholder      {@content}
+}
+
+// backface-visibility mixin
+@mixin backface-visibility( $style: visible ) {
+    @each $prefix in -moz, -ms, -o, -webkit {
+        #{$prefix}-backface-visibility: $style;
+    }
+    backface-visibility: $style;
+}
+
+
+@mixin onboardingstep($imageurl) {
+    .illustration {
+        @include inline-flex;
+        @include flex-dir(column);
+        @include align-items(center);
+
+        background: $white;
+
+        height: 100%;
+        width: 30em;
+
+        .header {
+            width: 100%;
+            height: 60%;
+            background-image: url($imageurl);
+            background-repeat: no-repeat;
+            background-position: 50%;
+            background-size: 50%;
+        }
+
+        .title {
+            @include flexbox;
+            @include align-items(center);
+            @include flex-grow(1);
+            font-weight: 500;
+
+        }
+
+        .message {
+            color: $text-info-color;
+            font-style: italic;
+            text-align: center;
+            padding: 0 25px;
+            line-height: 1.5em;
+
+            span {
+                color: $text-primary-color;
+            }
+        }
+
+    }
+}

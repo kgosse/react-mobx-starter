@@ -6,6 +6,7 @@ var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
 var getClientEnvironment = require('./env');
 var paths = require('./paths');
+const path = require('path');
 
 
 
@@ -79,7 +80,16 @@ module.exports = {
       'react-native': 'react-native-web'
     }
   },
-  
+
+  sassResources: [
+    path.resolve(paths.scss, 'utilities/_config.scss'),
+    path.resolve(paths.scss, 'utilities/_colors.scss'),
+    path.resolve(paths.scss, 'utilities/_typography.scss'),
+    path.resolve(paths.scss, 'utilities/_functions.scss'),
+    path.resolve(paths.scss, 'utilities/_mixins.scss'),
+  ],
+
+
   module: {
     // First, run the linter.
     // It's important to do this before Babel processes the JS.
@@ -134,15 +144,19 @@ module.exports = {
           cacheDirectory: true
         }
       },
+      {
+        test: /\.s?css$/,
+        loaders: ["style", "css?modules&localIdentName=[local]---[hash:base64:5]","sass", "sass-resources"]
+      },
       // "postcss" loader applies autoprefixer to our CSS.
       // "css" loader resolves paths in CSS and adds assets as dependencies.
       // "style" loader turns CSS into JS modules that inject <style> tags.
       // In production, we use a plugin to extract that CSS to a file, but
       // in development "style" loader enables hot editing of CSS.
-      {
+/*      {
         test: /\.css$/,
         loader: 'style!css?importLoaders=1!postcss'
-      },
+      },*/
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
       {
